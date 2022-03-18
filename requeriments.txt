@@ -6,6 +6,7 @@ django-cors-headers==3.11.0
 django-filter==21.1
 djangorestframework==3.13.1
 drf-writable-nested==0.6.3
+gunicorn==20.1.0
 idna==3.3
 importlib-metadata==4.10.1
 Markdown==3.3.6
