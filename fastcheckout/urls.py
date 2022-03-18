@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from api.urls import router
 from api.views import CustomAuthToken
-from django.views.decorators.csrf import csrf_exempt
-from api.views import CreateUserView
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
     path('api/v2/', include(router.urls)),
     path('auth/', CustomAuthToken.as_view()),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

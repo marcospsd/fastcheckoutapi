@@ -24,6 +24,9 @@ pyvenv.cfg
 # C extensions
 *.so
 
+media/
+static/
+
 # Distribution / packaging
 .Python
 build/
