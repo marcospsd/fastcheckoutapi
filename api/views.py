@@ -49,7 +49,7 @@ class ProdutoSearchView(generics.ListAPIView):
 
     def get_queryset(self):
         if self.kwargs.get('desc_pk'):
-            return self.queryset.filter(descricao__contains=self.kwargs.get('desc_pk'))|self.queryset.filter(codigo__contains=self.kwargs.get('desc_pk'))
+            return self.queryset.filter(descricao__icontains=self.kwargs.get('desc_pk'))|self.queryset.filter(codigo__icontains=self.kwargs.get('desc_pk'))
 
 
 class ProdutoViewSet(viewsets.ModelViewSet):
