@@ -95,10 +95,6 @@ class VendaSerializers(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         data1 = validated_data.pop('ordem_venda')
         data2 = validated_data.pop('formpag_venda')
-        ordemvenda = (instance.ordem_venda).all()
-        formapag = (instance.formpag_venda).all()
-        ordemvenda = list(ordemvenda)
-        formapag = list(formapag)
         instance.cpf = validated_data.get('cpf', instance.cpf)
         instance.nome = validated_data.get('nome', instance.nome)
         instance.telefone = validated_data.get('telefone', instance.telefone)
@@ -107,23 +103,14 @@ class VendaSerializers(serializers.ModelSerializer):
         instance.nomevendedor = validated_data.get('nomevendedor', instance.nomevendedor)
         instance.status = validated_data.get('status', instance.status)
         instance.total_venda = validated_data.get('total_venda', instance.total_venda)
-
         instance.save()
+        Corpo_venda.objects.filter(os=instance).delete()
+        Formapagamento.objects.filter(key=instance).delete()
+        for data in data1:
+            Corpo_venda.objects.create(os=instance, **data)
 
-        for data1 in data1:
-            data = ordemvenda.pop(0)
-            data.codpro = data1.get('codpro', data.codpro)
-            data.valor_unitsis = data1.get('valor_unitsis', data.valor_unitsis)
-            data.valor_unitpro = data1.get('valor_unitpro', data.valor_unitpro)
-            data.quantidade = data1.get('quantidade', data.quantidade)
-            data.descripro = data1.get('descripro', data.descripro)
-            data.save()
+        for data in data2:
+            Formapagamento.objects.create(key=instance, **data)
 
-        for data2 in data2:
-            data = formapag.pop(0)
-            data.forma = data2.get('forma', data.forma)
-            data.parcelas = data2.get('parcelas', data.parcelas)
-            data.valor = data2.get('valor', data.valor)
-            data.save()
-
+     
         return instance
