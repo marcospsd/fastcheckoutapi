@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4ccf-)*v(=lr7l#s%@b7zo!v-w^=48j4s3yk&%fd75=4t0&=ct'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -83,15 +83,15 @@ WSGI_APPLICATION = 'fastcheckout.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -99,10 +99,10 @@ DATABASES = {
         'USER': 'fastcheckout',
         'PASSWORD': 'Diniz@123',
         'PORT': '3306',
-        'HOST': '172.17.0.2,
+        'HOST': '172.17.0.2',
     }
 }
-"""
+
 
 
 # Password validation

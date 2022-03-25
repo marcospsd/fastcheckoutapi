@@ -14,9 +14,10 @@ class Cliente(models.Model):
 
 class Produto(models.Model):
     codigo = models.CharField(max_length=10, primary_key=True)
-    descricao = models.CharField(max_length=30)
+    descricao = models.CharField(max_length=50)
     valor_unitsis = models.DecimalField(max_digits=10, decimal_places=2)
     valor_unitpro = models.DecimalField(max_digits=10, decimal_places=2)
+    grupo = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return str(self.codigo)
@@ -45,7 +46,7 @@ class Venda(models.Model):
 class Corpo_venda(models.Model):
     os = models.ForeignKey(Venda, related_name='ordem_venda', on_delete=models.CASCADE)
     codpro = models.ForeignKey(Produto, related_name='prod_venda', on_delete=models.CASCADE)
-    descripro = models.CharField(max_length=30, blank=True, null=True)
+    descripro = models.CharField(max_length=50, blank=True, null=True)
     valor_unitsis = models.DecimalField(max_digits=10, decimal_places=2)
     valor_unitpro = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.PositiveIntegerField()
