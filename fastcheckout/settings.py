@@ -146,6 +146,7 @@ STATICFILES_DIRS = [BASE_DIR / 'build/static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
+MEDIAFILES_DIRS = [BASE_DIR / 'build/static/media/']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
