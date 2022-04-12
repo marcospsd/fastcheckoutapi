@@ -101,7 +101,7 @@ DATABASES = {
         'PASSWORD': 'Diniz@123',
         'PORT': '3306',
         'HOST': '172.17.0.2',
-        # 'HOST': '10.3.1.10'
+        #'HOST': '10.3.1.10'
     }
 }
 
@@ -141,12 +141,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'build/static']
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Default primary key field type
