@@ -1,10 +1,13 @@
+from dataclasses import fields
 import re
+from typing import Counter
 
 from rest_framework import serializers
 
 from core.models import *
 from users.models import User
 from django.contrib.auth.hashers import make_password
+from django.db.models import Sum, Count
 
 
 
@@ -114,3 +117,17 @@ class VendaSerializers(serializers.ModelSerializer):
 
      
         return instance
+
+
+class ChartsSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = Venda
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        data = super(ChartsSerializer, self).to_representation(instance)
+        result_data = {"status": 200, "message": "Cartegory List"}
+        result_data["total_venda"] = Venda.objects.filter(status='F').aggregate(Sum('total_venda'))
+        result_data['count_venda'] = Venda.objects.filter(status='F').aggregate(Count('pk'))
+        return result_data
