@@ -100,8 +100,8 @@ DATABASES = {
         'USER': 'fastcheckout',
         'PASSWORD': 'Diniz@123',
         'PORT': '3306',
-        'HOST': '172.17.0.2',
-        #'HOST': '10.3.1.10'
+        #'HOST': '172.17.0.2',
+        'HOST': '10.3.1.10'
     }
 }
 
@@ -142,7 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'build/static']
+STATICFILES_DIRS = [BASE_DIR / '/build/static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
