@@ -18,6 +18,7 @@ class Produto(models.Model):
     valor_unitsis = models.DecimalField(max_digits=10, decimal_places=2)
     valor_unitpro = models.DecimalField(max_digits=10, decimal_places=2)
     grupo = models.CharField(max_length=30, null=True, blank=True)
+    reposicao = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.codigo)
@@ -68,3 +69,9 @@ class Formapagamento(models.Model):
     forma = models.CharField(max_length=2, choices=methodos)
     parcelas = models.PositiveIntegerField()
     valor = models.DecimalField(max_digits=6, decimal_places=2)
+
+
+class SaidaProdutos(models.Model):
+    venda = models.CharField(max_length=10)
+    descri = models.CharField(max_length=50)
+    visualizado = models.BooleanField(default=False)

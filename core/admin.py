@@ -27,3 +27,8 @@ class VendaAdmin(admin.ModelAdmin):
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('cpf', 'nome', 'telefone', 'email')
 
+
+@admin.register(SaidaProdutos)
+class SaidaProdutosAdmin(admin.ModelAdmin):
+    list_display = ('venda', 'descri', 'visualizado')
+
