@@ -65,9 +65,8 @@ class CorpoVendaViewSet(viewsets.ModelViewSet):
     queryset = Corpo_venda.objects.all()
     serializer_class = CorpoVendaSerializers
 
-
 class FormaVendaViewSet(viewsets.ModelViewSet):
-    queryset = Formapagamento.objects.all()
+    queryset = Formapagamento.objects.all().filter(created_at=date.today()).order_by("-id")
     serializer_class = FormaVendaSerializers
 
 class VendaViewSet(viewsets.ModelViewSet):
@@ -81,3 +80,7 @@ class VendaViewSet(viewsets.ModelViewSet):
             return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=date.today()).order_by("-ordem")
         elif self.request.user.tipouser == 'A':
             return Venda.objects.filter(status='F').order_by("-ordem")
+
+class SaidaProdutosViewSet(viewsets.ModelViewSet):
+    queryset = SaidaProdutos.objects.filter(visualizado=False)
+    serializer_class = SaidaProdutosSerielizer

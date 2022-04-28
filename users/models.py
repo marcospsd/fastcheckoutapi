@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 TypesUser = [
     ('V', 'Vendedor'),
     ('C', 'Caixa'),
+    ('E', 'Estoque'),
     ('A', 'Administrador'),
 ]
 

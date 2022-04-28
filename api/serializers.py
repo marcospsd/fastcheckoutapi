@@ -129,6 +129,13 @@ class VendaSerializers(serializers.ModelSerializer):
         return instance
 
 
+
+class SaidaProdutosSerielizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SaidaProdutos
+        fields = '__all__'
+
 class ChartsSerializer(serializers.ModelSerializer):
    
     class Meta:

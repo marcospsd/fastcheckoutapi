@@ -12,6 +12,7 @@ router.register('venda', VendaViewSet)
 router.register('corpovenda', CorpoVendaViewSet)
 router.register('formavenda', FormaVendaViewSet)
 router.register('create', CreateUserView)
+router.register('saidaprodutos', SaidaProdutosViewSet)
 
 
 urlpatterns = [
