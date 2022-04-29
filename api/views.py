@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
@@ -66,7 +66,7 @@ class CorpoVendaViewSet(viewsets.ModelViewSet):
     serializer_class = CorpoVendaSerializers
 
 class FormaVendaViewSet(viewsets.ModelViewSet):
-    queryset = Formapagamento.objects.all().filter(created_at=date.today()).order_by("-id")
+    queryset = Formapagamento.objects.all().filter(created_at=datetime.today())
     serializer_class = FormaVendaSerializers
 
 class VendaViewSet(viewsets.ModelViewSet):
@@ -75,9 +75,9 @@ class VendaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.user.tipouser == 'C':
-            return Venda.objects.filter(create_at=date.today()).order_by("-ordem")
+            return Venda.objects.filter(create_at=datetime.today()).order_by("-ordem")
         elif self.request.user.tipouser == 'V':
-            return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=date.today()).order_by("-ordem")
+            return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=datetime.today()).order_by("-ordem")
         elif self.request.user.tipouser == 'A':
             return Venda.objects.filter(status='F').order_by("-ordem")
 

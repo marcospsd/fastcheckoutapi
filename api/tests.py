@@ -1,11 +1,5 @@
-import requests
-import json
-from requests.auth import HTTPBasicAuth
+from datetime import datetime, date
 
-url = 'http://127.0.0.1:8000/auth/'
-body = {
-    "username": "",
-    "password": ""
-}
-data = requests.post(url, data=body)
-print(data.json())
+date = datetime.now()
+
+print(date)

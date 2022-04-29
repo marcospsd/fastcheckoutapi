@@ -20,6 +20,7 @@ class Produto(models.Model):
     grupo = models.CharField(max_length=30, null=True, blank=True)
     reposicao = models.BooleanField(default=False)
 
+
     def __str__(self):
         return str(self.codigo)
 
@@ -34,7 +35,8 @@ class Venda(models.Model):
     nome = models.CharField(max_length=25, null=True, blank=True)
     telefone = models.CharField(max_length=15, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    create_at = models.DateTimeField(auto_now=True)
+    create_at = models.DateField(auto_now=True)
+    hour_at = models.TimeField(auto_now=True)
     vendedor = models.CharField(max_length=6, blank=True, null=True)
     nomevendedor = models.CharField(max_length=30, blank=True, null=True)
     status = models.CharField(max_length=1, choices=statusvenda)
@@ -51,7 +53,8 @@ class Corpo_venda(models.Model):
     valor_unitsis = models.DecimalField(max_digits=10, decimal_places=2)
     valor_unitpro = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.PositiveIntegerField()
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(auto_now=True)
+    hour_at = models.TimeField(auto_now=True)
 
     def __str__(self):
         return "Cadastrado"
@@ -70,7 +73,8 @@ class Formapagamento(models.Model):
     forma = models.CharField(max_length=2, choices=methodos)
     parcelas = models.PositiveIntegerField()
     valor = models.DecimalField(max_digits=6, decimal_places=2)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(auto_now=True)
+    hour_at = models.TimeField(auto_now=True)
 
 
 class SaidaProdutos(models.Model):
