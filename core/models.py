@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Cliente(models.Model):
-    nome = models.CharField(max_length=25, null=True, blank=True)
+    nome = models.CharField(max_length=50, null=True, blank=True)
     cpf = models.CharField(max_length=25, primary_key=True)
     telefone = models.CharField(max_length=15, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
@@ -32,7 +32,7 @@ statusvenda = [
 class Venda(models.Model):
     ordem = models.BigAutoField(primary_key=True, auto_created=True)
     cpf = models.ForeignKey(Cliente, related_name='cpfvenda', on_delete=models.CASCADE)
-    nome = models.CharField(max_length=25, null=True, blank=True)
+    nome = models.CharField(max_length=50, null=True, blank=True)
     telefone = models.CharField(max_length=15, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     create_at = models.DateField(auto_now=True)
