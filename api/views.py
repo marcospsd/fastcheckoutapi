@@ -66,8 +66,12 @@ class CorpoVendaViewSet(viewsets.ModelViewSet):
     serializer_class = CorpoVendaSerializers
 
 class FormaVendaViewSet(viewsets.ModelViewSet):
-    queryset = Formapagamento.objects.all().filter(created_at=datetime.today())
+    queryset = Formapagamento.objects.all()
     serializer_class = FormaVendaSerializers
+
+    def get_queryset(self):
+        if self.request.user.tipouser == 'C':
+            return Formapagamento.objects.filter(created_at=datetime.today())
 
 class VendaViewSet(viewsets.ModelViewSet):
     queryset = Venda.objects.all()
