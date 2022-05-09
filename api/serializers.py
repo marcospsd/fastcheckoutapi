@@ -92,11 +92,14 @@ class VendaSerializers(serializers.ModelSerializer):
         user = Venda.objects.create(**validated_data)
         for data1 in data1:
             Corpo_venda.objects.create(os=user, **data1)
-            name = data1['codpro']
-            data = Produto.objects.filter(codigo=name).values('codigo','descricao','reposicao')
-            newdata = data[0]
-            if newdata['reposicao'] is True:
-                SaidaProdutos.objects.create(venda=str(user), descri=data1['descripro'])
+            try:
+                name = data1['codpro']
+                data = Produto.objects.filter(codigo=name).values('codigo','descricao','reposicao')
+                newdata = data[0]
+                if newdata['reposicao'] is True:
+                    SaidaProdutos.objects.create(venda=str(user), descri=data1['descripro'])
+            except:
+                pass
         for data2 in data2:
             Formapagamento.objects.create(key=user, **data2)
         return user
