@@ -61,13 +61,23 @@ class ProdutoSerializers(serializers.ModelSerializer):
             'descricao',
             'valor_unitsis',
             'valor_unitpro',
+            'reposicao'
         ]
 
 
+class ReposicaoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Produto
+        fields = [
+            'reposicao'
+        ]
+
 class CorpoVendaSerializers(serializers.ModelSerializer):
+    complementos = ReposicaoSerializers(source='codpro', read_only=True)
+
     class Meta:
         model = Corpo_venda
-        fields = ['id','os', 'codpro','descripro', 'quantidade', 'valor_unitsis', 'valor_unitpro']
+        fields = ['id','os', 'codpro','descripro', 'quantidade', 'valor_unitsis', 'valor_unitpro', 'complementos']
         read_only_fields = ['os']
 
 
