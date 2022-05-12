@@ -79,11 +79,24 @@ class VendaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.user.tipouser == 'C':
-            return Venda.objects.filter(create_at=date.today()).order_by("-ordem")
+            return Venda.objects.filter(create_at=date.today(), status="P").order_by("-ordem")
         elif self.request.user.tipouser == 'V':
-            return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=date.today()).order_by("-ordem")
+            return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=date.today(), status="P").order_by("-ordem")
         elif self.request.user.tipouser == 'A':
             return Venda.objects.filter(status='F').order_by("-ordem")
+
+class VendaFinalizadaViewSet(viewsets.ModelViewSet):
+    queryset = Venda.objects.all()
+    serializer_class = VendaSerializers
+
+    def get_queryset(self):
+        if self.request.user.tipouser == 'C':
+            return Venda.objects.filter(create_at=date.today(), status="F").order_by("-ordem")
+        elif self.request.user.tipouser == 'V':
+            return Venda.objects.filter(vendedor=self.request.user.codvend, create_at=date.today(), status="F").order_by("-ordem")
+        elif self.request.user.tipouser == 'A':
+            return Venda.objects.filter(status='F').order_by("-ordem")
+
 
 class SaidaProdutosViewSet(viewsets.ModelViewSet):
     queryset = SaidaProdutos.objects.filter(visualizado=False)
