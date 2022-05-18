@@ -100,7 +100,7 @@ DATABASES = {
         'USER': 'fastcheckout',
         'PASSWORD': 'Diniz@123',
         'PORT': '3306',
-        'HOST': '10.3.1.10',
+        'HOST': '192.168.1.10',
         #'HOST': '10.3.1.5'
     }
 }
