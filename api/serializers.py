@@ -129,19 +129,18 @@ class VendaSerializers(serializers.ModelSerializer):
         Corpo_venda.objects.filter(os=instance).delete()
         Formapagamento.objects.filter(key=instance).delete()
         for data in data1:
-            Corpo_venda.objects.create(os=instance, **data)
+            Corpo_venda.objects.create(os=instance, created_at=instance.create_at, **data)
             try:
                 name = data1['codpro']
                 data = Produto.objects.filter(codigo=name).values('codigo','descricao','reposicao')
                 newdata = data[0]
                 if newdata['reposicao'] is True:
-                    SaidaProdutos.objects.create(venda=str(user), descri=data1['descripro'])
+                    SaidaProdutos.objects.create(venda=str(instance), descri=data1['descripro'])
             except:
                 pass
 
         for data in data2:
-            Formapagamento.objects.create(key=instance, **data)
-
+            Formapagamento.objects.create(key=instance, created_at=instance.create_at, **data)
     
         return instance
 
